@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import UpcomingMovies from "../components/pages/UpcomingMovies";
-import About from "../components/pages/About";
+import UpcomingMovies from "../pages/UpcomingMovies";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
