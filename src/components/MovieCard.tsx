@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from "react";
 import { Movie } from "../services/types";
 import Star from "./Star";
 import { MoviePosterBaseUrl } from "../services/movieService";
+import { Link } from "react-router-dom";
 
 export type MovieCardProps = HTMLAttributes<HTMLDivElement> & {
   movie: Movie;
@@ -9,21 +10,23 @@ export type MovieCardProps = HTMLAttributes<HTMLDivElement> & {
 
 export default function MovieCard(props: MovieCardProps) {
   return (
-    <div className="grid rounded-3xl max-w-[370px] shadow-sm bg-slate-100 flex-col">
-      <MoviePoster movie={props.movie} />
-      <div className="group p-6 grid z-10">
-        <MovieTitle movie={props.movie} />
-        <div className="h-28">
-          <span className="line-clamp-4 py-2 text-sm font-light leading-relaxed">
-            {props.movie.overview}
-          </span>
-        </div>
-        <div className="grid-cols-2 flex group justify-between">
-          <MovieScore movie={props.movie} />
-          <MoviePopularity movie={props.movie} />
+    <Link to={`movie/${props.movie.id}`}>
+      <div className="grid rounded-3xl max-w-[370px] shadow-sm bg-slate-100 flex-col">
+        <MoviePoster movie={props.movie} />
+        <div className="group p-6 grid z-10">
+          <MovieTitle movie={props.movie} />
+          <div className="h-28">
+            <span className="line-clamp-4 py-2 text-sm font-light leading-relaxed">
+              {props.movie.overview}
+            </span>
+          </div>
+          <div className="grid-cols-2 flex group justify-between">
+            <MovieScore movie={props.movie} />
+            <MoviePopularity movie={props.movie} />
+          </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

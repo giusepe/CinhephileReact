@@ -38,7 +38,7 @@ export default function UpcomingMovies() {
   }, [currentPage]);
 
   return (
-    <div className="relative flex min-h-screen flex-col justify-center overflow-hidden bg-slate-800 rounded-xl">
+    <>
       <Header />
       {isLoading ? (
         <Spinner />
@@ -48,7 +48,7 @@ export default function UpcomingMovies() {
           <Pagination PageNumbers={pageNumbers} />
         </>
       )}
-    </div>
+    </>
   );
 }
 
