@@ -1,41 +1,23 @@
-import { Movie } from "./types";
+import { MovieData } from "./types";
+
+const urlBase = "https://api.themoviedb.org/3";
+const apiKey = "1f54bd990f1cdfb230adb312546d765d";
+export const MoviePosterBaseUrl = "https://image.tmdb.org/t/p/w500/";
 
 export default function getUpcomingMovies(
-  index: number,
+  selectedPage: number,
   language: string
-): Movie[] {
-  return [
+): Promise<MovieData> {
+  return fetch(
+    `${urlBase}/movie/upcoming?api_key=${apiKey}&language=${language}&page=${selectedPage}&sort_by=release_date`,
     {
-      adult: false,
-      backdrop_path: "/path/to/backdrop1.jpg",
-      genre_ids: [28, 12],
-      id: 1,
-      original_language: "en",
-      original_title: "Movie 1",
-      overview: "This is an overview of Movie 1",
-      popularity: 10.0,
-      poster_path: "/path/to/poster1.jpg",
-      release_date: "2022-01-01",
-      title: "Movie 1",
-      video: false,
-      vote_average: 8.0,
-      vote_count: 1000,
-    },
-    {
-      adult: false,
-      backdrop_path: "/path/to/backdrop2.jpg",
-      genre_ids: [16, 35],
-      id: 2,
-      original_language: "en",
-      original_title: "Movie 2",
-      overview: "This is an overview of Movie 2",
-      popularity: 20.0,
-      poster_path: "/path/to/poster2.jpg",
-      release_date: "2022-02-02",
-      title: "Movie 2",
-      video: false,
-      vote_average: 7.0,
-      vote_count: 2000,
-    },
-  ];
+      method: "GET",
+      headers: new Headers({
+        accept: "application/json",
+        Authorization: "Bearer 1f54bd990f1cdfb230adb312546d765d",
+      }),
+    }
+  )
+    .then((respose) => respose.json())
+    .then((data) => data as MovieData);
 }

@@ -1,6 +1,7 @@
 import React, { HTMLAttributes } from "react";
 import { Movie } from "../services/types";
 import Star from "./Star";
+import { MoviePosterBaseUrl } from "../services/movieService";
 
 export type MovieCardProps = HTMLAttributes<HTMLDivElement> & {
   movie: Movie;
@@ -29,7 +30,7 @@ export default function MovieCard(props: MovieCardProps) {
 const MoviePoster = (props: { movie: Movie }) => {
   return (
     <img
-      src={"https://image.tmdb.org/t/p/w500/" + props.movie.poster_path}
+      src={MoviePosterBaseUrl + props.movie.poster_path}
       width={375}
       height={200}
       className="rounded-t-3xl justify-center grid h-80 object-cover"
